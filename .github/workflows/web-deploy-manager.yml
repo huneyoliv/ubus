@@ -1,11 +1,11 @@
-name: Deploy Manager
+name: Deploy Manager (Web)
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'manager/**'
+      - 'web/manager/**'
 
 env:
   REGISTRY: ghcr.io
@@ -45,7 +45,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./manager
+          context: ./web/manager
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
@@ -66,7 +66,7 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             GH_USER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
-            IMAGE_URI="ghcr.io/$GH_USER/ubus-web-manager:latest"
+            IMAGE_URI="ghcr.io/$GH_USER/ubus-manager:latest"
             
             echo "${{ secrets.GITHUB_TOKEN }}" | sudo docker login ghcr.io -u $GH_USER --password-stdin
             sudo docker pull $IMAGE_URI
