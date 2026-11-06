@@ -1,0 +1,493 @@
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { ArrowRight, Check, Activity, TrendingUp, Target, Users, Shield, Zap, Instagram, MailCheck } from 'lucide-react'
+
+export default function LandingPage() {
+    const [leadName, setLeadName] = useState('');
+    const [leadEmail, setLeadEmail] = useState('');
+    const [leadOrg, setLeadOrg] = useState('');
+    const [leadSubmitted, setLeadSubmitted] = useState(false);
+
+    const handleLeadSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!leadName || !leadEmail) return;
+
+        const subject = encodeURIComponent(`Interesse UBUS - ${leadOrg || 'Contato Comercial'}`);
+        const body = encodeURIComponent(`Olá equipe UBUS,\n\nTenho interesse em conhecer a plataforma para meu município/empresa.\n\nNome: ${leadName}\nE-mail: ${leadEmail}\nInstituição/Município: ${leadOrg}\n\nAtenciosamente,\n${leadName}`);
+        window.location.href = `mailto:contato@ubus.me?subject=${subject}&body=${body}`;
+        setLeadSubmitted(true);
+    };
+    return (
+        <div className="w-full min-h-screen bg-[#F0F4FF] relative overflow-hidden flex flex-col font-sans text-[#0F172A]">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#2563EB]/5 blur-[120px]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-[#7C3AED]/5 blur-[150px]" />
+            </div>
+
+            <header className="relative z-10 flex items-center justify-between px-6 py-5 max-w-7xl w-full mx-auto">
+                <div className="flex items-center gap-2">
+                    <img src="/logo-v2.png" alt="Ubus Logo" className="h-10 w-auto" />
+                </div>
+
+                <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#64748B]">
+                    <a href="#inicio" className="hover:text-[#2563EB] transition-colors">Início</a>
+                    <a href="#recursos" className="hover:text-[#2563EB] transition-colors">Recursos</a>
+                    <a href="#contato" className="hover:text-[#2563EB] transition-colors">Contato</a>
+                </nav>
+
+                <div />
+            </header>
+
+            <main className="relative z-10 flex-1 flex flex-col items-center justify-center max-w-7xl w-full mx-auto px-6 py-12 gap-24">
+                <section id="inicio" className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full py-6">
+                    <div className="flex flex-col justify-center max-w-xl flex-1">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6 text-[#0F172A]"
+                        >
+                            Gerencie sua frota <span className="font-serif italic font-normal text-[#64748B]">com confiança</span> e controle em cada viagem
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="text-lg text-[#64748B] mb-8 leading-relaxed"
+                        >
+                            Otimize rotas, reduza custos operacionais e ofereça reservas sob demanda com a plataforma mais completa de mobilidade inteligente.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="flex items-center gap-4"
+                        >
+                            <a
+                                href="#contato"
+                                className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-base px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 shadow-md text-center"
+                            >
+                                Solicitar Demonstração <ArrowRight size={18} />
+                            </a>
+                        </motion.div>
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="flex-1 relative flex justify-center lg:justify-end w-full"
+                    >
+                        <div className="relative w-full max-w-[420px]">
+                            <div className="absolute inset-0 bg-[#2563EB]/5 rounded-3xl filter blur-3xl opacity-30" />
+                            <motion.img
+                                src="/hero_phone_hand.png"
+                                alt="Ubus Dashboard App"
+                                className="relative w-full object-contain rounded-2xl"
+                                animate={{ y: [0, -10, 0] }}
+                                transition={{
+                                    repeat: Infinity,
+                                    duration: 4,
+                                    ease: "easeInOut"
+                                }}
+                            />
+                        </div>
+                    </motion.div>
+                </section>
+
+                <section id="recursos" className="w-full py-12 border-t border-[#E2E8F0]">
+                    <div className="text-center max-w-3xl mx-auto mb-20">
+                        <span className="inline-block px-3 py-1 rounded-full bg-white border border-[#E2E8F0] text-[#64748B] text-xs font-bold uppercase tracking-wider mb-4">Recursos</span>
+                        <h2 className="text-4xl font-extrabold text-[#0F172A] tracking-tight mb-4">Veja sua operação com clareza em um só lugar</h2>
+                        <p className="text-lg text-[#64748B]">Monitore rotas, controle financeiro e gerencie passageiros com total transparência e sem complicações.</p>
+                    </div>
+
+                    <div className="space-y-24">
+                        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex-1 max-w-xl"
+                            >
+                                <h3 className="text-3xl font-extrabold mb-4 text-[#0F172A]">Acompanhe sua frota</h3>
+                                <p className="text-[#64748B] mb-8 leading-relaxed">
+                                    Tudo em uma única tela. Monitore seus veículos, rotas escolares e universitárias e garanta a ocupação ideal de cada linha.
+                                </p>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Target size={12} /></div>
+                                        <span>Monitore a rota e localização dos veículos em tempo real</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Activity size={12} /></div>
+                                        <span>Acompanhe a taxa de ocupação e evite superlotação</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Users size={12} /></div>
+                                        <span>Gere relatórios automatizados de passageiros transportados</span>
+                                    </li>
+                                </ul>
+                                <a href="#contato" className="inline-block px-6 py-3 bg-white border border-[#E2E8F0] hover:border-[#2563EB] hover:text-[#2563EB] font-bold text-sm rounded-full transition-all text-[#0F172A]">
+                                    Ver Ocupação
+                                </a>
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex-1 w-full flex justify-center lg:justify-end"
+                            >
+                                <div className="w-full max-w-[400px] bg-white border border-[#E2E8F0] rounded-3xl p-6 shadow-sm">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <span className="text-xs font-bold text-[#94A3B8] uppercase">Pontualidade da Frota</span>
+                                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center gap-1">+24%</span>
+                                    </div>
+                                    <div className="text-4xl font-extrabold text-[#0F172A] mb-6">94.8%</div>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <div className="flex justify-between text-xs font-bold text-[#64748B] mb-1">
+                                                <span>Rotas Concluídas</span>
+                                                <span>78%</span>
+                                            </div>
+                                            <div className="w-full h-2 bg-[#F0F4FF] rounded-full overflow-hidden">
+                                                <div className="h-full bg-[#2563EB]" style={{ width: '78%' }} />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="flex justify-between text-xs font-bold text-[#64748B] mb-1">
+                                                <span>Ocupação Média</span>
+                                                <span>60%</span>
+                                            </div>
+                                            <div className="w-full h-2 bg-[#F0F4FF] rounded-full overflow-hidden">
+                                                <div className="h-full bg-[#0F172A]" style={{ width: '60%' }} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+
+                        <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex-1 max-w-xl"
+                            >
+                                <h3 className="text-3xl font-extrabold mb-4 text-[#0F172A]">Otimize seus custos</h3>
+                                <p className="text-[#64748B] mb-8 leading-relaxed">
+                                    Reduza gastos operacionais. Monitore o consumo de combustível, quilometragem rodada e a eficiência de cada trajeto.
+                                </p>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><TrendingUp size={12} /></div>
+                                        <span>Monitore o custo por km de cada veículo da frota</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Check size={12} /></div>
+                                        <span>Identifique gargalos e reduza o desperdício de combustível</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Shield size={12} /></div>
+                                        <span>Planeje rotas inteligentes para reduzir a quilometragem</span>
+                                    </li>
+                                </ul>
+                                <a href="#contato" className="inline-block px-6 py-3 bg-white border border-[#E2E8F0] hover:border-[#2563EB] hover:text-[#2563EB] font-bold text-sm rounded-full transition-all text-[#0F172A]">
+                                    Ver Economia
+                                </a>
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex-1 w-full flex justify-center lg:justify-start"
+                            >
+                                <div className="w-full max-w-[400px] bg-white border border-[#E2E8F0] rounded-3xl p-6 shadow-sm">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <span className="text-xs font-bold text-[#94A3B8] uppercase">Economia Mensal</span>
+                                        <span className="text-sm font-bold text-[#2563EB]">-18%</span>
+                                    </div>
+                                    <div className="h-40 w-full relative">
+                                        <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                            <defs>
+                                                <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stopColor="#2563EB" stopOpacity="0.2" />
+                                                    <stop offset="100%" stopColor="#2563EB" stopOpacity="0.0" />
+                                                </linearGradient>
+                                            </defs>
+                                            <path d="M 0,35 Q 20,25 40,20 T 80,10 T 100,5 L 100,40 L 0,40 Z" fill="url(#gradient)" />
+                                            <path d="M 0,35 Q 20,25 40,20 T 80,10 T 100,5" fill="none" stroke="#2563EB" strokeWidth="2" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+
+                        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex-1 max-w-xl"
+                            >
+                                <h3 className="text-3xl font-extrabold mb-4 text-[#0F172A]">Alertas em tempo real</h3>
+                                <p className="text-[#64748B] mb-8 leading-relaxed">
+                                    Foque nos eventos críticos da operação. Receba notificações instantâneas sobre desvios de rota, velocidade ou problemas mecânicos.
+                                </p>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Zap size={12} /></div>
+                                        <span>Alertas imediatos de atrasos e paradas não autorizadas</span>
+                                    </li>
+                                    <li className="flex items-start gap-3 text-[#64748B]">
+                                        <div className="w-5 h-5 rounded-full bg-[#E2E8F0] text-[#2563EB] flex items-center justify-center mt-1 shrink-0"><Check size={12} /></div>
+                                        <span>Comunicação direta bidirecional com os motoristas</span>
+                                    </li>
+                                </ul>
+                                <a href="#contato" className="inline-block px-6 py-3 bg-white border border-[#E2E8F0] hover:border-[#2563EB] hover:text-[#2563EB] font-bold text-sm rounded-full transition-all text-[#0F172A]">
+                                    Ver Alertas
+                                </a>
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex-1 w-full flex justify-center lg:justify-end"
+                            >
+                                <div className="w-full max-w-[400px] bg-white border border-[#E2E8F0] rounded-3xl p-8 shadow-sm flex flex-col items-center justify-center text-center">
+                                    <div className="w-24 h-24 rounded-full border-4 border-[#F0F4FF] border-t-[#2563EB] flex items-center justify-center mb-6 relative">
+                                        <span className="text-xl font-extrabold text-[#0F172A]">99%</span>
+                                    </div>
+                                    <p className="text-sm font-semibold text-[#64748B] max-w-[240px]">Redução de incidentes e atrasos operacionais reportados.</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section className="w-full py-12 border-t border-[#E2E8F0] flex flex-col items-center gap-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8 }}
+                        className="w-full max-w-4xl"
+                    >
+                        <img
+                            src="/phone_mockups_group.png"
+                            alt="Mockups de celulares Ubus"
+                            className="w-full object-contain rounded-2xl"
+                        />
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="max-w-2xl text-center flex flex-col items-center"
+                    >
+                        <div className="w-12 h-12 rounded-full overflow-hidden mb-6 bg-blue-100 flex items-center justify-center text-[#2563EB] text-sm font-bold">
+                            CS
+                        </div>
+                        <blockquote className="text-xl font-medium text-[#0F172A] leading-relaxed mb-6">
+                            "A plataforma Ubus nos ajuda a entender a nossa operação de transporte com muito mais clareza. O monitoramento em tempo real e a roteirização otimizada facilitaram a mobilidade diária dos nossos alunos."
+                        </blockquote>
+                        <cite className="not-italic">
+                            <span className="block font-bold text-sm text-[#0F172A]">Consélio Souza</span>
+                            <span className="block text-xs font-semibold text-[#94A3B8]">Secretário dos Transportes</span>
+                        </cite>
+                    </motion.div>
+                </section>
+
+                <motion.section
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full py-16 px-8 rounded-3xl bg-[#0F172A] text-white relative overflow-hidden flex flex-col items-center text-center"
+                >
+                    <div className="absolute inset-0 opacity-10 pointer-events-none">
+                        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+                    </div>
+
+                    <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 relative z-10 max-w-2xl">
+                        Evolua a gestão do transporte coletivo com a Ubus
+                    </h2>
+                    <p className="text-white/70 text-lg mb-8 relative z-10 max-w-xl">
+                        Acompanhe rotas, otimize o consumo da frota e garanta pontualidade e segurança para os alunos.
+                    </p>
+                    <a href="#contato" className="px-8 py-4 bg-white hover:bg-white/90 text-[#0F172A] font-bold text-base rounded-full transition-all active:scale-95 mb-16 relative z-10">
+                        Começar Agora
+                    </a>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-4xl relative z-10 border-t border-white/10 pt-12">
+                        <div>
+                            <div className="text-3xl font-extrabold mb-1">14.5K</div>
+                            <div className="text-xs font-semibold text-white/50 uppercase">Alunos Atendidos</div>
+                        </div>
+                        <div>
+                            <div className="text-3xl font-extrabold mb-1">8.2K</div>
+                            <div className="text-xs font-semibold text-white/50 uppercase">Viagens Mensais</div>
+                        </div>
+                        <div>
+                            <div className="text-3xl font-extrabold mb-1">12.3K</div>
+                            <div className="text-xs font-semibold text-white/50 uppercase">Km Otimizados</div>
+                        </div>
+                        <div>
+                            <div className="text-3xl font-extrabold mb-1">350+</div>
+                            <div className="text-xs font-semibold text-white/50 uppercase">Ônibus Monitorados</div>
+                        </div>
+                    </div>
+                </motion.section>
+
+                <section id="contato" className="w-full py-16 flex flex-col items-center border-t border-[#E2E8F0]">
+                    <div className="max-w-xl text-center mb-10">
+                        <span className="inline-block px-3 py-1 rounded-full bg-white border border-[#E2E8F0] text-[#2563EB] text-xs font-bold uppercase tracking-wider mb-4">Contato</span>
+                        <h2 className="text-3xl font-extrabold text-[#0F172A] mb-4">Traga a Ubus para sua cidade ou empresa</h2>
+                        <p className="text-[#64748B]">Preencha o formulário abaixo e receba o contato de um de nossos especialistas em mobilidade.</p>
+                    </div>
+
+                    {leadSubmitted ? (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="w-full max-w-md bg-white p-8 rounded-3xl border border-emerald-200 shadow-sm text-center flex flex-col items-center gap-4"
+                        >
+                            <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                <MailCheck className="h-6 w-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-[#0F172A]">Solicitação Iniciada!</h3>
+                            <p className="text-sm text-[#64748B] leading-relaxed">
+                                Seu aplicativo de e-mail foi aberto com os dados preenchidos. Nossa equipe comercial entrará em contato em até 24 horas úteis.
+                            </p>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setLeadSubmitted(false);
+                                    setLeadName('');
+                                    setLeadEmail('');
+                                    setLeadOrg('');
+                                }}
+                                className="text-xs font-bold text-[#2563EB] hover:underline mt-2 cursor-pointer"
+                            >
+                                Enviar outra mensagem
+                            </button>
+                        </motion.div>
+                    ) : (
+                        <motion.form
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            onSubmit={handleLeadSubmit}
+                            className="w-full max-w-md space-y-4 bg-white p-8 rounded-3xl border border-[#E2E8F0] shadow-sm"
+                        >
+                            <div>
+                                <label className="block text-xs font-bold text-[#64748B] uppercase mb-2">Nome Completo</label>
+                                <input
+                                    type="text"
+                                    placeholder="Seu nome"
+                                    value={leadName}
+                                    onChange={(e) => setLeadName(e.target.value)}
+                                    className="w-full px-4 py-3 bg-[#F8FAFF] border border-[#E2E8F0] rounded-xl focus:border-[#2563EB] focus:outline-none transition-colors text-[#0F172A] text-sm"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold text-[#64748B] uppercase mb-2">E-mail Corporativo</label>
+                                <input
+                                    type="email"
+                                    placeholder="seu@email.com"
+                                    value={leadEmail}
+                                    onChange={(e) => setLeadEmail(e.target.value)}
+                                    className="w-full px-4 py-3 bg-[#F8FAFF] border border-[#E2E8F0] rounded-xl focus:border-[#2563EB] focus:outline-none transition-colors text-[#0F172A] text-sm"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold text-[#64748B] uppercase mb-2">Empresa / Município</label>
+                                <input
+                                    type="text"
+                                    placeholder="Nome da instituição ou cidade"
+                                    value={leadOrg}
+                                    onChange={(e) => setLeadOrg(e.target.value)}
+                                    className="w-full px-4 py-3 bg-[#F8FAFF] border border-[#E2E8F0] rounded-xl focus:border-[#2563EB] focus:outline-none transition-colors text-[#0F172A] text-sm"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold rounded-xl transition-all active:scale-[0.98] shadow-sm shadow-[#2563EB]/10 cursor-pointer text-sm"
+                            >
+                                Falar com um Consultor
+                            </button>
+                        </motion.form>
+                    )}
+                </section>
+            </main>
+
+            <footer className="relative z-10 bg-white border-t border-[#E2E8F0] pt-16 pb-12">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 mb-12">
+                    <div className="md:col-span-1">
+                        <img src="/logo-v2.png" alt="Ubus Logo" className="h-10 w-auto mb-4" />
+                        <p className="text-sm text-[#64748B] leading-relaxed">
+                            Tecnologia inteligente para otimização e gestão do transporte coletivo escolar e universitário.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h5 className="font-bold text-sm text-[#0F172A] uppercase tracking-wider mb-4">Soluções</h5>
+                        <ul className="space-y-3 text-sm font-semibold text-[#64748B]">
+                            <li><a href="#recursos" className="hover:text-[#2563EB] transition-colors">Recursos</a></li>
+                            <li><a href="#contato" className="hover:text-[#2563EB] transition-colors">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5 className="font-bold text-sm text-[#0F172A] uppercase tracking-wider mb-4">Funcionalidades</h5>
+                        <ul className="space-y-3 text-sm font-semibold text-[#64748B]">
+                            <li><a href="#recursos" className="hover:text-[#2563EB] transition-colors">Gestão de Frotas</a></li>
+                            <li><a href="#recursos" className="hover:text-[#2563EB] transition-colors">Otimização de Rotas</a></li>
+                            <li><a href="#recursos" className="hover:text-[#2563EB] transition-colors">Aplicativo do Aluno</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5 className="font-bold text-sm text-[#0F172A] uppercase tracking-wider mb-4">Social</h5>
+                        <ul className="space-y-3 text-sm font-semibold text-[#64748B]">
+                            <li>
+                                <a
+                                    href="https://instagram.com/ubusmobi"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1 hover:text-[#2563EB] transition-colors"
+                                >
+                                    <Instagram size={14} /> @ubusmobi
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-6 border-t border-[#E2E8F0] pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#94A3B8]">
+                    <span>© 2026 Ubus. Todos os direitos reservados.</span>
+                    <div className="flex items-center gap-6 mt-4 md:mt-0 font-semibold text-[#64748B]">
+                        <a href="#" className="hover:text-[#2563EB] transition-colors">Política de Privacidade</a>
+                        <a href="#" className="hover:text-[#2563EB] transition-colors">Termos de Uso</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    )
+}
